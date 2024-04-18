@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dynamically creating element</title>
+  </head>
+  <body style="display: flex; justify-content: center; align-items: center">
+    <div
+      id="container"
+      style="
+        width: 500px;
+        height: 500px;
+        border: 1px solid red;
+        margin-top: 50px;
+        display: flex;
+      "
+    ></div>
+
+    <script>
+      let container = document.getElementById("container");
+      console.log(container);
+
+      let data = [
+        {
+          name: "The Rustic Spoon",
+          location: "123 Main St, Cityville",
+          cuisine: "American",
+          rating: 4.5,
+          reviews: [
+            {
+              user: "John Doe",
+              comment: "Great food and atmosphere!",
+              rating: 5,
+            },
+            {
+              user: "Jane Smith",
+              comment: "Service was a bit slow, but the food was delicious.",
+              rating: 4,
+            },
+          ],
+        },
+        {
+          name: "Sushi Express",
+          location: "456 Elm St, Townsville",
+          cuisine: "Japanese",
+          rating: 4.2,
+          reviews: [
+            {
+              user: "Alice Johnson",
+              comment: "Fresh and tasty sushi!",
+              rating: 4.5,
+            },
+            {
+              user: "Bob Williams",
+              comment: "Good variety, but portions are small.",
+              rating: 3.5,
+            },
+          ],
+        },
+        {
+          name: "La Pizzeria",
+          location: "789 Oak St, Villagetown",
+          cuisine: "Italian",
+          rating: 4.8,
+          reviews: [
+            {
+              user: "Emma Brown",
+              comment: "Best pizza in town!",
+              rating: 5,
+            },
+            {
+              user: "Michael Wilson",
+              comment: "Authentic flavors and great service.",
+              rating: 5,
+            },
+          ],
+        },
+      ];
+
+      let htmlElements = data.map((item) => {
+        let card = `  <div
+        class="res-card"
+        style="
+          width: 100px;
+          height: 100px;
+          display: flex;
+          justify-content: flex-start;
+          align-items: flex-start;
+          padding: 5px;
+          border:1px solid red;
+          margin :10px
+        "
+      >
+        <p>${item.name}</p>
+      </div>`;
+        return card;
+      });
+
+      // example using createElement
+
+      let card2 = document.createElement("div");
+      card2.style.width = "100px";
+      card2.style.height = "100px";
+      card2.style.justifyContent = "flex-start";
+      card2.style.border = "1px solid blue";
+      // or
+      card2.className = "res-card";
+
+      let cardName = document.createElement("p");
+      cardName.textContent = `${data[0].name}`;
+      card2.appendChild(cardName);
+
+      container.appendChild(card2);
+
+      console.log(htmlElements);
+
+      // container.innerHTML = htmlElements.join("");
+    </script>
+  </body>
+</html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>HTML Attribute Manipulation</title>
+  </head>
+  <body>
+    <h2>HTML Attribute Manipulation</h2>
+
+    <p id="myParagraph" data-custom="example">This is a paragraph.</p>
+
+    <label for="attributeName">Attribute Name:</label>
+    <input type="text" id="attributeName" />
+
+    <label for="attributeValue">Attribute Value:</label>
+    <input type="text" id="attributeValue" />
+
+    <button onclick="checkAttribute()">Check Attribute</button>
+    <button onclick="getAttribute()">Get Attribute</button>
+    <button onclick="setAttribute()">Set Attribute</button>
+    <button onclick="removeAttribute()">Remove Attribute</button>
+
+    <script>
+      function checkAttribute() {
+        var attributeName = document.getElementById("attributeName").value;
+        var paragraph = document.getElementById("myParagraph");
+        var hasCustomAttribute = paragraph.hasAttribute(attributeName);
+        alert(
+          "Does the paragraph have a '" +
+            attributeName +
+            "' attribute? " +
+            hasCustomAttribute
+        );
+      }
+
+      function getAttribute() {
+        var attributeName = document.getElementById("attributeName").value;
+        var paragraph = document.getElementById("myParagraph");
+        var customValue = paragraph.getAttribute(attributeName);
+        alert(
+          "The value of the '" +
+            attributeName +
+            "' attribute is: " +
+            customValue
+        );
+      }
+
+      function setAttribute() {
+        var attributeName = document.getElementById("attributeName").value;
+        var attributeValue = document.getElementById("attributeValue").value;
+        var paragraph = document.getElementById("myParagraph");
+        paragraph.setAttribute(attributeName, attributeValue);
+        alert("The '" + attributeName + "' attribute has been updated.");
+      }
+
+      function removeAttribute() {
+        var attributeName = document.getElementById("attributeName").value;
+        var paragraph = document.getElementById("myParagraph");
+        paragraph.removeAttribute(attributeName);
+        alert("The '" + attributeName + "' attribute has been removed.");
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>setTimeout and setInterval Example</title>
+    <style>
+      #coloredDiv {
+        width: 100px;
+        height: 100px;
+        background-color: red;
+        display: none;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>setTimeout and setInterval Example</h1>
+
+    <p>
+      This page demonstrates the usage of setTimeout and setInterval in
+      JavaScript.
+    </p>
+
+    <button onclick="runTimeout()">Run setTimeout</button>
+    <p id="timeoutMessage"></p>
+
+    <button onclick="runInterval()">Run setInterval</button>
+
+    <button onclick="pauseInterval()">Pause setInterval</button>
+    <button onclick="stopInterval('stop')">Stop setInterval</button>
+
+    <p id="intervalCounter">Counter: 0</p>
+
+    <div id="coloredDiv">
+      <p style="color: white" id="timeoutMessage"></p>
+    </div>
+
+    <script>
+      let timeoutID;
+      var intervalID;
+      let counter = 0;
+
+      function runTimeout() {
+        document.getElementById("coloredDiv").style.display = "none"; // Reset div
+        timeoutID = setTimeout(function () {
+          document.getElementById("timeoutMessage").innerText =
+            "setTimeout executed!";
+          document.getElementById("coloredDiv").style.display = "block";
+        }, 2000);
+      }
+      function stopTimeout() {
+        clearTimeout(timeoutID);
+        document.getElementById("timeoutMessage").innerText =
+          "setTimeout stopped!";
+      }
+
+      function runInterval() {
+        intervalID = setInterval(function () {
+          counter++;
+          document.getElementById("intervalCounter").innerText =
+            "Counter: " + counter;
+        }, 1000);
+      }
+
+      function stopInterval(state = "stop") {
+        console.log(state);
+        if (state == "stop") {
+          document.getElementById("intervalCounter").innerText = "Counter: 0";
+          counter = 0;
+        }
+        clearInterval(intervalID);
+      }
+
+      function pauseInterval() {
+        stopInterval("pause");
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Window Location Object Example</title>
+  </head>
+  <body>
+    <h1>Window Location Object Example</h1>
+
+    <p>
+      This page demonstrates the usage of the methods and properties of the
+      Window Location object in JavaScript.
+    </p>
+
+    <p id="currentURL">Current URL: <span id="urlDisplay"></span></p>
+
+    <button onclick="changeLocation()">
+      assign -> 'https://www.example.com' ()
+    </button>
+    <button onclick="replaceLocation()">
+      Replace Location using replace() -> 'https://www.example.com'
+    </button>
+    <button onclick="reloadPage()">Reload Page</button>
+
+    <p>URL Components:</p>
+    <ul>
+      <li>Hash: <span id="hash"></span></li>
+      <li>Host: <span id="host"></span></li>
+      <li>Hostname: <span id="hostname"></span></li>
+      <li>Href: <span id="href"></span></li>
+      <li>Origin: <span id="origin"></span></li>
+      <li>Pathname: <span id="pathname"></span></li>
+      <li>Port: <span id="port"></span></li>
+      <li>Protocol: <span id="protocol"></span></li>
+      <li>Search: <span id="search"></span></li>
+    </ul>
+
+    <label for="keyInput">Key:</label>
+    <input type="text" id="keyInput" />
+
+    <label for="valueInput">Value:</label>
+    <input type="text" id="valueInput" />
+
+    <button onclick="addParamsToURL()">Add Parameters to URL</button>
+    <button onclick="listAllQueryParams()">Get Query Params</button>
+
+    <div id="params-container" style="height: auto; width: 500px"></div>
+
+    <script>
+      // Function to display various components of the current URL
+      function displayLocationProperties() {
+        // Display the complete URL
+        document.getElementById("urlDisplay").innerText = window.location.href;
+
+        // Display the hash part of the URL (if any)
+        document.getElementById("hash").innerText = window.location.hash;
+
+        // Display the host part of the URL
+        document.getElementById("host").innerText = window.location.host;
+
+        // Display the hostname part of the URL
+        document.getElementById("hostname").innerText =
+          window.location.hostname;
+
+        // Display the complete URL again (redundant)
+        document.getElementById("href").innerText = window.location.href;
+
+        // Display the origin (protocol, hostname, and port) of the URL
+        document.getElementById("origin").innerText = window.location.origin;
+
+        // Display the pathname part of the URL
+        document.getElementById("pathname").innerText =
+          window.location.pathname;
+
+        // Display the port number of the URL
+        document.getElementById("port").innerText = window.location.port;
+
+        // Display the protocol (http: or https:) of the URL
+        document.getElementById("protocol").innerText =
+          window.location.protocol;
+
+        // Display the search part of the URL (query string)
+        document.getElementById("search").innerText = window.location.search;
+      }
+
+      function changeLocation() {
+        window.location.assign("https://www.example.com");
+      }
+
+      function replaceLocation() {
+        window.location.replace("https://www.example.com");
+      }
+
+      function reloadPage() {
+        window.location.reload();
+      }
+
+      function addParamsToURL() {
+        var key = document.getElementById("keyInput").value;
+        var value = document.getElementById("valueInput").value;
+
+        var url = window.location.href;
+
+        var separator = url.includes("?") ? "&" : "?";
+        console.log("? =", url.includes("?"));
+        console.log("& =", url.includes("?"));
+
+        url +=
+          separator + encodeURIComponent(key) + "=" + encodeURIComponent(value);
+
+        document.getElementById("urlDisplay").innerText = "Updated URL: " + url;
+
+        location.assign(url);
+      }
+
+      function listAllQueryParams() {
+        const urlParams = new URLSearchParams(location.search);
+
+        params = [];
+        for (let [key, val] of urlParams.entries()) {
+          console.log(key, val);
+          obj = {
+            key,
+            val,
+          };
+          params.push(obj);
+        }
+        console.log(params);
+
+        let listContainer = document.getElementById("params-container");
+        listContainer.nextElementSibling;
+
+        listContainer.innerHTML = "";
+        let listItemArr = [];
+        params.forEach((element) => {
+          listItem = `<li onclick="printLog('${element.key}')">${element.key} → ${element.val}</li>`;
+          listItemArr.push(listItem);
+        });
+
+        listContainer.innerHTML += `<ul>${listItemArr.join(" ")}</ul>`;
+      }
+      function printLog(ky) {
+        console.log(ky);
+      }
+
+      window.onload = displayLocationProperties;
+    </script>
+  </body>
+</html>

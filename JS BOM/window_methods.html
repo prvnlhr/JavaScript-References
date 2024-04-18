@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JS BOM Window_methods</title>
+  </head>
+  <body>
+    <h1>JS BOM Window_methods</h1>
+
+    <button onclick="openWindow()">Open New Window</button>
+    <button onclick="closeWindow()">Close Current Window</button>
+    <button onclick="showAlert()">Show Alert</button>
+    <button onclick="showConfirm()">Show Confirmation</button>
+    <button onclick="showPrompt()">Show Prompt</button>
+    <button onclick="reloadPage()">Reload Page</button>
+    <button onclick="resizeWindow()">Resize window</button>
+    <button onclick="moveWindow()">Move window</button>
+
+    <script>
+      let openedWindow;
+
+      function moveWindow() {
+        if (openedWindow && !openedWindow.closed) {
+          openedWindow.moveBy(100, -100);
+        } else {
+          console.log("No open window to resize.");
+        }
+      }
+
+      function resizeWindow() {
+        if (openedWindow && !openedWindow.closed) {
+          openedWindow.resizeBy(-50, -50);
+        } else {
+          console.log("No open window to resize.");
+        }
+      }
+
+      function openWindow() {
+        openedWindow = window.open(
+          "http://localhost:5500/JS%20BOM/window_methods.html",
+          "_blank",
+          "width=500,height=500"
+        );
+      }
+
+      function closeWindow() {
+        window.close();
+      }
+
+      function showAlert() {
+        window.alert("This is an alert message!");
+      }
+
+      function showConfirm() {
+        var result = window.confirm("Do you want to continue?");
+        if (result) {
+          console.log("User clicked OK");
+        } else {
+          console.log("User clicked Cancel");
+        }
+      }
+
+      function showPrompt() {
+        var userInput = window.prompt("Please enter your name:", "John Doe");
+        if (userInput !== null) {
+          console.log("User entered: " + userInput);
+        } else {
+          console.log("User canceled the prompt");
+        }
+      }
+
+      function reloadPage() {
+        window.location.reload();
+      }
+    </script>
+  </body>
+</html>

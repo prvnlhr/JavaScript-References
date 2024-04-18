@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ClassList Methods Demo</title>
+    <style>
+      .box {
+        width: 100px;
+        height: 100px;
+        background-color: #ccc;
+        margin: 20px;
+        display: inline-block;
+      }
+
+      .highlight {
+        border: 2px solid red;
+      }
+    </style>
+  </head>
+  <body>
+    <h2>ClassList Methods Demo</h2>
+    <div class="box" id="box1" onclick="toggleClass(this)">
+      Click me to toggle class
+    </div>
+
+    <button onclick="addClass()">Add Class</button>
+    <button onclick="removeClass()">Remove Class</button>
+    <button onclick="containsClass()">Contains Class</button>
+    <button onclick="replaceClass()">Replace Class</button>
+    <button onclick="toggleBoxClass()">Toggle Class</button>
+
+    <script>
+      function addClass() {
+        var box = document.getElementById("box1");
+        box.classList.add("highlight");
+      }
+
+      function removeClass() {
+        var box = document.getElementById("box1");
+        box.classList.remove("highlight");
+      }
+
+      function containsClass() {
+        var box = document.getElementById("box1");
+        var containsClass = box.classList.contains("highlight");
+        alert("Does box 1 have the 'highlight' class? " + containsClass);
+      }
+
+      function replaceClass() {
+        var box = document.getElementById("box1");
+        box.classList.replace("highlight", "newHighlight");
+      }
+
+      function toggleBoxClass() {
+        var box = document.getElementById("box1");
+        box.classList.toggle("highlight");
+      }
+
+      function toggleClass(element) {
+        element.classList.toggle("highlight");
+      }
+    </script>
+  </body>
+</html>
